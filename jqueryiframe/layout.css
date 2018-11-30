@@ -1,0 +1,48 @@
+*{margin:0;padding:0;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;font-family:'Hiragino Sans GB W3','Hiragino Sans GB','microsoft yahei','Sim sun','Helvetica Neue',Helvetica,sans-serif;}
+html{}
+html,body{width:100%;margin:0 auto;}
+body{width:98%;padding:15px 0;font-size: 16px;}
+.fl{float:left;}
+.fr{float:right;}
+
+/*---------------------------------*/
+iframe{width:100%;margin:0 auto;height:100%;min-height:300px;border: 1px dotted #f60;border-radius:5px;box-shadow:0 1px 5px gray;}
+input[type="text"]{width:200px;height:30px;line-height: 30px;border:1px solid #1296db;padding:5px 8px;border-radius: 3px;}
+input[type="button"]{display:block;width:auto;min-width:120px; margin:0 0 8px;height:30px;line-height: 30px;padding:0 8px;background-color: #00b262;color:#fff;border:1px solid #00b262;border-radius:3px;cursor:pointer;}
+input[type="button"]:hover{background-color:#00bc4f;}
+input[disabled]{background-color:#d4d4d4;border-color:#f5f5f5;}
+input[disabled]:hover{background-color:#d4d4d4;cursor:not-allowed;}
+
+code{font-size:12px;font-style:italic;color:#777;}
+code:before{content:'代码：';margin-right:0px;}
+.info{width:auto;height:20px; line-height:20px;margin-bottom:8px;color:#555;font-size:14px;font-weight:bold;text-align: center;}
+.info:before{content:'▲';margin-right:5px;font-size:12px;color:#518090;}
+
+/*---------------------------------*/
+.section-iframe{width:100%;margin-bottom:25px;}
+.section-content{width:100%;margin:10px auto 0 auto;border:1px solid lightblue;border-radius:3px;}
+.section-content:after{content:'';display:block; clear:both;}
+.section-son{position:relative;}
+.panel-title{width:100%;height:30px;line-height:30px;margin:0 auto;background-color:lightblue;color:#555; font-weight:bold;text-align: center;border-bottom:1px solid lightblue;}
+.panel-con{padding:0px 15px;}
+.panel-con>div{margin-left:25px;border-left:1px dashed #ddd;padding-left:15px;}
+.panel-con>div:first-child{margin-left:0;padding-left:0;border-left-width:0;}
+
+.btn-con p{margin-bottom:10px;border-bottom:1px dotted #ddd;}
+.btn-con input[type="button"]{margin:0 auto;}
+
+.panel-info{position:absolute;right:0px;top:0px;width:auto; height:40px;line-height:40px;padding:0 20px;background-color:#0ce;color:#fff;border-radius:5px 5px 0 0;}
+.panel-result{margin-left:10%;}
+.panel-result input[type="text"]{border-color:#f60;}
+
+
+/*---------------------------------*/
+.web-title{width:100%;margin-bottom:15px;font-size:20px;color:#1296db;text-align:center;font-weight: bold;}
+
+
+/*+------iframe父页面*-----------+*/
+.face-fl{width:100%;}
+.face-fr{width:100%;height:400px;overflow-y:scroll;padding:8px 15px;border:1px dotted #1296db;border-radius:5px;padding-top:15px;}
+
+
+/*+-----iframe子页面------------+*/

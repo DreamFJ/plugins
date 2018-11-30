@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-control" content="no-cache">
+	<meta http-equiv="Expires" content="0">
+	<title>iframe子页面</title>
+	<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	<link rel="stylesheet" type="text/css" href="layout.css">
+</head>
+<body>
+
+	<div id="wrap">
+
+		<section class="section-son">
+			<div class="panel-info info">Iframe子页面</div>
+			<div class="panel-forms">
+				<p>
+					房号(room)：<input type="text" id="room" value="children">&nbsp;&nbsp;
+					父页面传递过来的参数值：<input type="text" id="i_param" value="">
+				</p>
+			</div><!--/panel-forms-->
+		</section><!--/panel-son-->
+		
+		<!--[===========1.取变量===========]-->
+		<section class="section-content">
+			<div class="panel-title">取父页面变量</div>
+			<div class="panel-con">
+				<div class="panel-btns fl">
+					<div class="btn-title info">JS方法</div>
+					<div class="btn-con con">
+						<p>
+							<input type="button" onclick="getVariable_java(1)" value="方法1">
+							<code>parent.parentVariable</code>
+						</p>
+						<p>
+							<input type="button" onclick="getVariable_java(2)" value="方法2">
+							<code>top.parentVariable</code>
+						</p>
+					</div><!--/btn-con-->
+				</div><!--/panel-btns-->
+				<div class="panel-btns fl">
+					<div class="btn-title info">JQuery方法</div>
+					<div class="btn-con con">
+						<p>
+							<input type="button" disabled="disabled" onclick="getVariable_jquery(1)" value="方法1">
+							<code>尚无相关方法</code>
+						</p>
+					</div><!--/btn-con-->
+				</div><!--/panel-btns-->
+			</div><!--/panel-con-->
+		</section><!--/section-content-->
+
+		<!--[===========1.取父页面元素===========]-->
+		<section class="section-content">
+			<div class="panel-title">获取父页面元素</div>
+			<div class="panel-con">
+				<div class="panel-btns fl">
+					<div class="btn-title info">JS方法</div>
+					<div class="btn-con con">
+						<p>
+							<input type="button" onclick="getValue_java(1)" value="方法1">
+							<code>window.parent.document.getElementById("house").value;</code>
+						</p>
+						<p>
+							<input type="button" onclick="getValue_java(2)" value="方法2">
+							<code>parent.document.getElementById("house").value;</code>
+						</p>
+					</div><!--/btn-con-->
+				</div><!--/panel-btns-->
+				<div class="panel-btns fl">
+					<div class="btn-title info">JQuery方法</div>
+					<div class="btn-con con">
+						<p>
+							<input type="button" onclick="getValue_jquery(1)" value="方法1">
+							<code>$('#house',window.parent.document).val();</code>
+						</p>
+						<p>
+							<input type="button" onclick="getValue_jquery(2)" value="方法2">
+							<code>parent.$("#house").val();</code>
+						</p>
+					</div><!--/btn-con-->
+				</div><!--/panel-btns-->
+				<div class="panel-result fl">
+					<div class="btn-title info">取值展示框</div>
+					<div class="result-con con">
+						<p>取到的父页面"楼盘名称"值：<input type="text" id="i_get"></p>
+					</div><!--/result-con-->
+				</div><!--/panel-result-->
+			</div><!--/panel-con-->
+		</section><!--/section-content-->
+		
+
+		<!--[===========2.取父页面函数===========]-->
+		<section class="section-content">
+			<div class="panel-title">获取父页面函数</div>
+			<div class="panel-con">
+				<div class="panel-btns fl">
+					<div class="btn-title info">JS方法</div>
+					<div class="btn-con con">
+						<p>
+							<input type="button" onclick="getFunc_java(1)" value="方法1">
+							<code>parent.window.fatherMethod();</code>
+						</p>
+						<p>
+							<input type="button" onclick="getFunc_java(2)" value="方法2">
+							<code>parent.fatherMethod();</code>
+						</p>
+						<p>
+							<input type="button" onclick="getFunc_java(3)" value="方法3">
+							<code>top.window.fatherMethod();</code>
+						</p>
+						<p>
+							<input type="button" onclick="getFunc_java(4)" value="方法4">
+							<code>top.fatherMethod();</code>
+						</p>
+					</div><!--/btn-con-->
+				</div><!--/panel-btns-->
+				<div class="panel-btns fl">
+					<div class="btn-title info">JQuery方法</div>
+					<div class="btn-con con">
+						<p>
+							<input type="button" onclick="getFunc_jquery(1)" value="方法1">
+							<code>$(window.parent.fatherMethod());</code>
+						</p>
+					</div><!--/btn-con-->
+				</div><!--/panel-btns-->
+			</div><!--/panel-con-->
+		</section><!--/section-content-->
+
+		
+		<!--[===========3.给父页面元素赋值===========]-->
+		<section class="section-content">
+			<div class="panel-title">给父页面元素赋值</div>
+			<div class="panel-con">
+				<div class="panel-btns fl">
+					<div class="btn-title info">JS方法</div>
+					<div class="btn-con con">
+						<p>
+							<input type="button" onclick="setFunc_java(1)" value="方法1">
+							<code>parent.document.getElementById("house").value = '值';</code>
+						</p>
+					</div><!--/btn-con-->
+				</div><!--/panel-btns-->
+				<div class="panel-btns fl">
+					<div class="btn-title info">JQuery方法</div>
+					<div class="btn-con con">
+						<p>
+							<input type="button" onclick="setFunc_jquery(1)" value="方法1">
+							<code>$('#house',window.parent.document).val('值');</code>
+						</p>
+						<p>
+							<input type="button" onclick="setFunc_jquery(2)" value="方法2">
+							<code>$(window.parent.$('#house').val('值'));</code>
+						</p>		
+					</div><!--/btn-con-->
+				</div><!--/panel-btns-->
+				<div class="panel-result fl">
+					<div class="btn-title info">赋值输入框</div>
+					<div class="result-con con">
+						<p>给父页面input赋值：<input type="text" id="i_give" value="Hi，我是子页面，我正在给父页面赋值.."></p>
+					</div><!--/result-con-->
+				</div><!--/panel-result-->
+			</div><!--/panel-con-->
+		</section><!--/section-content-->
+
+
+	</div><!--/wrap-->
+
+	<script type="text/javascript">
+
+
+		/*-------------------------------------------------------*/
+		//:::::接收父页面传递过来的参数paramFromParent
+		/*
+	    var values = window.paramFromParent;
+	    var inputObject =  document.getElementsByTagName('input')[0];
+	    inputObject.value = values
+		*/
+
+		/*-------------------------------------------------------*/
+	    //:::::子页面变量（供父页面调用)
+	    var sonVariable = '你好，我是子页面变量"sonVariable"';
+
+		/*-------------------------------------------------------*/
+		//:::::子页面函数(供父页面调用)
+	    function sonMethod(){
+	    	var message = 'Hi,我是子页面函数！'
+	    	var txt = typeof(arguments[0])=='undefined' ? message : message+'\n'+arguments[0];
+	    	alert(txt);
+	    }
+
+
+
+	    /*-------------------------------------------------------*/
+		//:::::接收父页面传递过来的参数paramFromParent
+		function receiveParam(){
+			var values = window.paramFromParent;
+			$('#i_param').val(values); //给文本框赋值
+		}
+
+		/*-------------------------取父页面变量------------------------------*/
+		//:::::Javascipt方法
+		function getVariable_java(){
+			var numc = typeof(arguments[0])=='undefined' ? 1 : arguments[0];
+			var val = '';
+			//parentVaribale是父页面定义的变量
+			//js方法1
+			if(numc==1) val = parent.parentVariable;
+			if(numc==2) val = top.parentVariable; 
+
+			alert(val);
+		}
+
+		//:::::JQuery方法
+		function getVariable_jquery(){
+			//...
+		}
+
+
+	    /*-------------------------取父页面元素值------------------------------*/
+	    //:::::Javascipt方法获取父页面元素值
+	    function getValue_java(){
+	    	var numc = typeof(arguments[0])=='undefined' ? 1 : arguments[0];
+	    	var txt = '';
+	    	//js方法1
+	    	if(numc==1) txt = window.parent.document.getElementById("house").value;
+
+	    	//js方法2
+	    	if(numc==2) txt = parent.document.getElementById("house").value;
+
+		    $('#i_get').val(txt); //显示结果
+		    
+		}
+		//:::::JQuery方法获取父页面元素值
+		function getValue_jquery(){
+			var numc = typeof(arguments[0])=='undefined' ? 1 : arguments[0];
+	    	var txt = '';
+			//jq方法1
+		    if(numc==1) txt = $('#house',window.parent.document).val();
+		    //jq方法2
+		    if(numc==2) txt = parent.$("#house").val();
+
+		     $('#i_get').val(txt); //显示结果
+		}
+
+
+		/*-------------------------取父页面函数------------------------------*/
+	    //:::::Javascipt方法获取父页面函数
+	    function getFunc_java(){
+	    	var numc = typeof(arguments[0])=='undefined' ? 1 : arguments[0];
+	    	//js方法1
+	    	if(numc==1) parent.window.fatherMethod('js method one');
+	    	//js方法2
+	    	if(numc==2) parent.fatherMethod('js method two');
+	    	//js方法3
+	    	if(numc==3)	top.window.fatherMethod('js method three');
+	    	//js方法4
+	    	if(numc==4)	top.fatherMethod('js method four');
+		    
+		}
+		//:::::JQuery方法获取父页面的函数
+		function getFunc_jquery(){
+			var numc = typeof(arguments[0])=='undefined' ? 1 : arguments[0];
+			//jq方法1
+			if(numc==1) $(window.parent.fatherMethod('JQ method one'));
+		}
+
+
+
+
+
+		/*------------------------赋值------------------------------*/
+	    //:::::Javascript方法给父页面元素值
+	    function setFunc_java(){
+	    	var numc = typeof(arguments[0])=='undefined' ? 1 : arguments[0];
+	    	var txt = $('#i_give').val();
+	    	//js方法1
+		    if(numc==1) parent.document.getElementById("house").value = txt;
+
+		}
+
+		//:::::Jquery方法给父页面元素值
+	    function setFunc_jquery(){
+	    	var numc = typeof(arguments[0])=='undefined' ? 1 : arguments[0];
+	    	var txt = $('#i_give').val();
+		    //jq方法1
+		    if(numc==1) $('#house',window.parent.document).val(txt);
+		    //jq方法2
+		    if(numc==2) $(window.parent.$('#house').val(txt));
+		}
+
+	</script>
+</body>
+</html>

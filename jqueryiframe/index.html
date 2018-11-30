@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initital-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+	<meta http-equiv="Cache-control" content="no-cache">
+	<meta http-equiv="Expires" content="0">
+	<title>iframe框架使用及调用方法汇总(iframe父页面)</title>
+    <meta name="keywords" content="iframe,iframe框架">
+    <meta name="description" content="本文总了iframe框架常见的使用方法，包含iframe传递参数,iframe调用父页面方法,iframe调用父页面元素,iframe调用子页面方法,iframe调用子页面元素,iframe获取父页面变量,iframe获取子页面变量等。">
+	<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	<link rel="stylesheet" type="text/css" href="layout.css">
+</head>
+<body>
+
+<div class="web-title">iframe框架使用及调用方法汇总 - 演示iframe父子页面参数传递及相互调用</div>
+<div class="face-fl fl">  
+	<section class="section-iframe">
+		<iframe name="frameName" id="frameId" src="child.html">
+			<p>你的浏览器不支持iframes。</p>
+		</iframe>
+	</section><!--/section-iframe-->
+</div><!--/face-iframe-->
+
+<div class='face-fr fl'>
+	<section class="section-son">
+        <div class="panel-info info">Iframe父页面</div>
+        <div class="panel-forms">
+            <p>楼盘名称(house)：<input type="text" id="house" value="parent"></p>
+        </div><!--/panel-forms-->
+    </section><!--/panel-son-->
+    
+    <!--[===========0.向子页面传递参数===========]-->
+    <section class="section-content">
+        <div class="panel-title">向子页面传递参数</div>
+        <div class="panel-con">
+            <div class="panel-btns fl">
+                <div class="btn-title info">JS方法</div>
+                <div class="btn-con con">
+                    <p>
+                        <input type="button" onclick="giveParam_java(1)" value="方法1">
+                        <code>document.getElementById('frameId').contentWindow.paramFromParent = '值';</code>
+                    </p>
+                    <p>
+                        <input type="button" onclick="giveParam_java(2)" value="方法2">
+                        <code>frameName.window.paramFromParent = '值';</code>
+                    </p>
+                </div><!--/btn-con-->
+            </div><!--/panel-btns-->
+            <div class="panel-btns fl">
+                <div class="btn-title info">JQuery方法</div>
+                <div class="btn-con con">
+                    <p>
+                        <input type="button" onclick="giveParam_jquery(1)" value="方法1">
+                        <code>$('#frameId')[0].contentWindow.paramFromParent = '值';</code>
+                    </p>
+                    <p>
+                        <input type="button" onclick="giveParam_jquery(2)" value="方法2">
+                        <code>$(window.frames["frameName"])[0].paramFromParent = '值';</code>
+                    </p>
+                </div><!--/btn-con-->
+            </div><!--/panel-btns-->
+            <div class="panel-result fl">
+                <div class="btn-title info">参数设置</div>
+                <div class="result-con con">
+                    <p>参数值：<input type="text" id="i_param" value="Hi,子页面,向你传参！"> （注：父页面传递的参数为：paramFromParent)</p>
+                    <code>子页面接收参数：var values = window.paramFromParent; (values就是父页面传递过去的参数值)</code>
+                </div><!--/result-con-->
+            </div><!--/panel-result-->
+        </div><!--/panel-con-->
+    </section><!--/section-content-->
+
+
+    <!--[===========1.取子页面元素===========]-->
+    <section class="section-content">
+        <div class="panel-title">获取子页面元素</div>
+        <div class="panel-con">
+            <div class="panel-btns fl">
+                <div class="btn-title info">JS方法</div>
+                <div class="btn-con con">
+                    <p>
+                        <input type="button" onclick="getValue_java(1)" value="方法1(兼容所有浏览器)">
+                        <code>frameName.window.document.getElementById("room").value; </code>
+                    </p>
+                    <p>
+                        <input type="button" onclick="getValue_java(2)" value="方法2(不兼容IE(8,9,10)">
+                        <code>window.frames["frameId"].contentWindow.document.getElementById("room").value;</code>
+                    </p>
+                    <p>
+                        <input type="button" onclick="getValue_java(3)" value="方法3(兼容所有浏览器)">
+                        <code>window.frames["frameName"].document.getElementById("room").value;</code>
+                    </p>
+                    <p>
+                        <input type="button" onclick="getValue_java(4)" value="方法4(兼容所有浏览器)">
+                        <code>document.getElementById('frameId').contentWindow.document.getElementById("room").value; </code>
+                    </p>
+                </div><!--/btn-con-->
+            </div><!--/panel-btns-->
+            <div class="panel-btns fl">
+                <div class="btn-title info">JQuery方法</div>
+                <div class="btn-con con">
+                    <p>
+                        <input type="button" onclick="getValue_jquery(1)" value="方法1">
+                        <code> $('#frameId').contents().find('#room').val();</code>
+                    </p>
+                    <p>
+                        <input type="button" onclick="getValue_jquery(2)" value="方法2">
+                        <code>$(window.frames['frameName'].document).find('#room').val();</code>
+                    </p>
+                    <p>
+                        <input type="button" onclick="getValue_jquery(3)" value="方法3">
+                        <code>('#room',window.frames['frameName'].document).val();</code>
+                    </p>
+                    <p>
+                        <input type="button" onclick="getValue_jquery(4)" value="获取子页面body内容">
+                        <code>alert($(document.getElementById('frameId').contentWindow.document.body).html());</code>
+                    </p>
+                </div><!--/btn-con-->
+            </div><!--/panel-btns-->
+            <div class="panel-result fl">
+                <div class="btn-title info">取值展示框</div>
+                <div class="result-con con">
+                    <p>子页面"房号"值：<input type="text" id="i_get"></p>
+                </div><!--/result-con-->
+            </div><!--/panel-result-->
+        </div><!--/panel-con-->
+    </section><!--/section-content-->
+
+    <!--[===========2.取子页面函数===========]-->
+    <section class="section-content">
+        <div class="panel-title">获取子页面函数</div>
+        <div class="panel-con">
+            <div class="panel-btns fl">
+                <div class="btn-title info">JS方法</div>
+                <div class="btn-con con">
+                    <p>
+                        <input type="button" onclick="getFunc_java(1)" value="方法1">
+                        <code>document.getElementById('frameId').contentWindow.sonMethod();</code>
+                    </p>
+                    <p>
+                        <input type="button" onclick="getFunc_java(2)" value="方法2">
+                        <code>frameName.window.sonMethod();</code>
+                    </p>
+                    <p>
+                        <input type="button" onclick="getFunc_java(3)" value="方法3">
+                        <code>frameName.sonMethod('js method three');</code>
+                    </p>
+                </div><!--/btn-con-->
+            </div><!--/panel-btns-->
+            <div class="panel-btns fl">
+                <div class="btn-title info">JQuery方法</div>
+                <div class="btn-con con">
+                    <p>
+                        <input type="button" onclick="getFunc_jquery(1)" value="方法1">
+                        <code>$('#frameId')[0].contentWindow.sonMethod();</code>
+                    </p>
+                    <p>
+                        <input type="button" onclick="getFunc_jquery(2)" value="方法2">
+                        <code> $(window.frames['frameName'])[0].sonMethod();</code>
+                    </p>
+                </div><!--/btn-con-->
+            </div><!--/panel-btns-->
+        </div><!--/panel-con-->
+    </section><!--/section-content-->
+
+
+    <!--[===========3.给子页面元素赋值===========]-->
+    <section class="section-content">
+        <div class="panel-title">给子页面元素赋值</div>
+        <div class="panel-con">
+            <div class="panel-btns fl">
+                <div class="btn-title info">JS方法</div>
+                <div class="btn-con con">
+                    <p>
+                        <input type="button" onclick="setFunc_java(1)" value="方法1(兼容所有浏览器)">
+                        <code>
+                            frameName.window.document.getElementById("room").value = '值'; <br>
+                        </code>
+                    </p>
+                    <p>
+                        <input type="button" onclick="setFunc_java(2)" value="方法2(不兼容IE(8,9,10)">
+                        <code>window.frames["frameId"].contentWindow.document.getElementById("room").value = '值'; </code>
+                    </p>
+                    <p>
+                        <input type="button" onclick="setFunc_java(3)" value="方法3(兼容所有浏览器)">
+                        <code>window.frames["frameName"].document.getElementById("room").value = '值'; </code>
+                    </p>
+                    <p>
+                        <input type="button" onclick="setFunc_java(4)" value="方法4(兼容所有浏览器)">
+                        <code>document.getElementById('frameId').contentWindow.document.getElementById("room").value = '值';</code>
+                    </p>
+                </div><!--/btn-con-->
+            </div><!--/panel-btns-->
+            <div class="panel-btns fl">
+                <div class="btn-title info">JQuery方法</div>
+                <div class="btn-con con">
+                    <p>
+                        <input type="button" onclick="setFunc_jquery(1)" value="方法1">
+                        <code>$('#frameId').contents().find('#room').val('值').css('background-color','red'); </code>
+                    </p>
+                    <p>
+                        <input type="button" onclick="setFunc_jquery(2)" value="方法2">
+                        <code>$(window.frames['frameName'].document).find('#room').val('值');</code>
+                    </p>
+                    <p>
+                        <input type="button" onclick="setFunc_jquery(3)" value="方法3">
+                        <code>$('#room',window.frames['frameName'].document).val('值');</code>
+                    </p>
+                </div><!--/btn-con-->
+            </div><!--/panel-btns-->
+            <div class="panel-result fl">
+                <div class="btn-title info">赋值输入框</div>
+                <div class="result-con con">
+                    <p>给子页面input赋值：<input type="text" id="i_give" value="Hi，我是父页面，我正在给子页面赋值.."></p>
+                </div><!--/result-con-->
+            </div><!--/panel-result-->
+        </div><!--/panel-con-->
+    </section><!--/section-content-->
+
+    <!--[===========4.给子页面设置背景色===========]-->
+    <section class="section-content">
+        <div class="panel-title">给子页面设置背景色</div>
+        <div class="panel-con">
+            <div class="panel-btns fl">
+                <div class="btn-title info">JS方法</div>
+                <div class="btn-con con">
+                    <p>
+                        <input type="button" onclick="setBgColor_java(1)" value="设置body背景色">
+                        <code>
+                            if(numc==1) var childObj = document.getElementById('frameId'); <br>
+                            var obj = (childObj.contentWindow || childObj.contentDocument); <br>
+                            if(obj.document) obj = obj.document;    <br>
+                            obj.body.style.backgroundColor = '颜色值'; 
+                        </code>
+                    </p>
+                    <p>
+                        <input type="button" onclick="setBgColor_java(2)" value="设置input背景色">
+                        <code>frameName.window.document.getElementById("room").style.backgroundColor = '颜色值'; </code>
+                    </p>
+                    <p>
+                        <input type="button" onclick="setBgColor_java(3)" value="设置input文字颜色">
+                        <code>frameName.window.document.getElementById("room").style.color = '颜色值'; </code>
+                    </p>      
+                </div><!--/btn-con-->
+            </div><!--/panel-btns-->
+            <div class="panel-btns fl">
+                <div class="btn-title info">JQuery方法</div>
+                <div class="btn-con con">
+                    <p>
+                        <input type="button" onclick="setBgColor_jquery(1)" value="方法1">
+                        <code>$('#frameId').contents().find('body').css('background-color','颜色值');</code>
+                    </p>
+                    <p>
+                        <input type="button" onclick="setBgColor_jquery(2)" value="方法2">
+                        <code> $(window.frames["frameName"].document).find('body').css('background-color','颜色值');</code>
+                    </p>
+                </div><!--/btn-con-->
+            </div><!--/panel-btns-->
+            <div class="panel-result fl">
+                <div class="btn-title info">颜色值输入框</div>
+                <div class="result-con con">
+                    <p>请输入颜色值，如green、#ff0000：<input type="text" id="i_color" value="green"></p>
+                </div><!--/result-con-->
+            </div><!--/panel-result-->
+        </div><!--/panel-con-->
+    </section><!--/section-content-->
+    
+</div><!--/face-content-->
+
+<script type="text/javascript">
+
+
+	/*-------------------------------------------------------*/
+	//:::::给子页面传递参数
+	//JS方法1
+    //document.getElementById('frameId').contentWindow.paramFromParent = 'JS方法1->给子页面传递参数';
+    //JS方法2
+    //frameName.window.paramFromParent = 'JS方法2->给子页面传递参数';
+    //jq方法1
+    //$('#frameId')[0].contentWindow.paramFromParent = 'jq1';
+    //jq方法2
+    //$(window.frames["frameName"])[0].paramFromParent = 'jq2';
+
+    
+    /*-------------------------------------------------------*/
+    //:::::父页面变量（供子页面调用)
+    var parentVariable = '你好，我是父页面变量"parentVariable"';
+
+    /*-------------------------------------------------------*/
+    //:::::父页面函数（供子页面调用)
+    function fatherMethod(){
+        var message = 'Hello,我是父页面函数！'
+        var txt = typeof(arguments[0])=='undefined' ? message : message+'\n'+arguments[0];
+        alert(txt);
+    }
+
+
+    /*-------------------------向子页面传递参数------------------------------*/
+    //:::::Javascipt方法向子页面传递参数
+    function giveParam_java(){
+        var numc = typeof(arguments[0])=='undefined' ? 1 : arguments[0];
+        var txt = $('#i_param').val();
+        //JS方法1
+        if(numc==1)  document.getElementById('frameId').contentWindow.paramFromParent = txt;
+        //JS方法2
+        if(numc==2)  frameName.window.paramFromParent = txt;
+
+        $('#frameId')[0].contentWindow.receiveParam(); //调用子页面的函数,该函数接收父页面传递过去的参数值
+
+    }
+
+    //:::::JQuery方法向子页面传递参数
+    function giveParam_jquery(){
+        var numc = typeof(arguments[0])=='undefined' ? 1 : arguments[0];
+        var txt = $('#i_param').val();
+        //jq方法1
+        if(numc==1) $('#frameId')[0].contentWindow.paramFromParent = txt;
+        //jq方法2
+        if(numc==2) $(window.frames["frameName"])[0].paramFromParent = txt;
+
+        $('#frameId')[0].contentWindow.receiveParam(); //调用子页面的函数,该函数接收父页面传递过去的参数值
+    }
+
+
+    /*-------------------------取子页面元素值------------------------------*/
+    //:::::Javascipt方法获取子页面元素值
+    function getValue_java(){
+        var numc = typeof(arguments[0])=='undefined' ? 1 : arguments[0];
+        var txt = '';
+        //js方法1
+        if(numc==1) txt = frameName.window.document.getElementById("room").value; //兼容所有浏览器
+        //js方法2
+        if(numc==2) txt = window.frames["frameId"].contentWindow.document.getElementById("room").value; //不兼容IE(8,9,10)
+        //JS方法3
+        if(numc==3) txt = window.frames["frameName"].document.getElementById("room").value; //兼容所有浏览器
+        //JS方法4
+        if(numc==4) txt = document.getElementById('frameId').contentWindow.document.getElementById("room").value;  //兼容所有浏览器
+
+        $('#i_get').val(txt); //显示结果
+        
+    }
+    //:::::JQuery方法获取子页面元素值
+    function getValue_jquery(){
+        var numc = typeof(arguments[0])=='undefined' ? 1 : arguments[0];
+        var txt = '';
+        //jq方法1
+        if(numc==1) txt = $('#frameId').contents().find('#room').val();
+        //jq方法2
+        if(numc==2) txt = $(window.frames['frameName'].document).find('#room').val();
+        //jq方法3
+        if(numc==3) txt = $('#room',window.frames['frameName'].document).val();
+        //附：获取子页面body内容
+        if(numc==4){
+            var html = $(document.getElementById('frameId').contentWindow.document.body).html();
+            alert(html);
+        }
+
+        $('#i_get').val(txt); //显示结果
+    }
+
+
+
+    /*-------------------------取子页面函数------------------------------*/
+    //:::::Javascipt方法获取子页面函数
+    function getFunc_java(){
+        var numc = typeof(arguments[0])=='undefined' ? 1 : arguments[0];
+        //JS方法1
+        if(numc==1) document.getElementById('frameId').contentWindow.sonMethod('js method one');
+        //JS方法2
+        if(numc==2) frameName.window.sonMethod('js method two');
+        //JS方法3
+        if(numc==3) frameName.sonMethod('js method three');
+        //document.getElementsByTagName("iframe").contentWindow.alerts();
+        //document.getElementsByTagName("input")[i].contentWindow.子页面方法名;
+    }
+
+    //:::::JQuery方法获取子页面的函数
+    function getFunc_jquery(){
+        var numc = typeof(arguments[0])=='undefined' ? 1 : arguments[0];
+        //JQ方法1
+         if(numc==1) $('#frameId')[0].contentWindow.sonMethod('jQuery method one');
+        //JQ方法2
+         if(numc==2) $(window.frames['frameName'])[0].sonMethod('jQuery method two');
+    }
+
+
+    /*------------------------赋值------------------------------*/
+    //:::::Javascript方法设置子页面元素值
+    function setFunc_java(){
+        var numc = typeof(arguments[0])=='undefined' ? 1 : arguments[0];
+        var txt = $('#i_give').val(); 
+        //JS方法1
+        if(numc==1) frameName.window.document.getElementById("room").value = txt; //兼容所有浏览器
+        //JS方法2
+        if(numc==2) window.frames["frameId"].contentWindow.document.getElementById("room").value = txt; //不兼容IE(8,9,10)
+        //JS方法3
+        if(numc==3) window.frames["frameName"].document.getElementById("room").value = txt; 
+        //js方法4
+        if(numc==4) document.getElementById('frameId').contentWindow.document.getElementById("room").value = txt; 
+
+    }
+
+    //:::::Jquery方法设置子页面元素值
+    function setFunc_jquery(){
+        var numc = typeof(arguments[0])=='undefined' ? 1 : arguments[0];
+        var txt = $('#i_give').val();
+        //jQ方法1
+        if(numc==1) $('#frameId').contents().find('#room').val(txt).css('background-color','red'); 
+        //jQ方法2
+        if(numc==2) $(window.frames['frameName'].document).find('#room').val(txt); 
+        //jQ方法3
+        if(numc==3) $('#room',window.frames['frameName'].document).val(txt);
+    }
+
+
+    /*------------------------赋值------------------------------*/
+    //:::::Javascript方法设置子页面背景色
+    function setBgColor_java(){
+        var numc = typeof(arguments[0])=='undefined' ? 1 : arguments[0];
+        var txt = $('#i_color').val(); 
+
+
+        //设置背景色-方法1
+        if(numc==1) {
+            var childObj = document.getElementById('frameId');
+            var obj = (childObj.contentWindow || childObj.contentDocument);
+            if(obj.document) obj = obj.document;
+            obj.body.style.backgroundColor = txt; 
+        }
+
+        //设置背景色-方法2
+        if(numc==2) frameName.window.document.getElementById("room").style.backgroundColor = txt; //设置背景色
+
+        //设置文字颜色
+        if(numc==3) frameName.window.document.getElementById("room").style.color = txt; //设置文字颜色
+    }
+
+    //:::::Jquery方法设置子页面背景色
+    function setBgColor_jquery(){
+        var numc = typeof(arguments[0])=='undefined' ? 1 : arguments[0];
+        var txt = $('#i_color').val();
+        //jQ方法1
+        if(numc==1) $('#frameId').contents().find('body').css('background-color',txt);
+        //jQ方法2
+        if(numc==2)  $(window.frames["frameName"].document).find('body').css('background-color',txt);
+    }
+
+
+</script>
+</body>
+</html>
